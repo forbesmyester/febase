@@ -1,0 +1,25 @@
+{
+  "name": "febase",
+  "version": "0.5.0",
+  "description": "Play area for figuring out what a React Phonegap app will look like",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/forbesmyester/febase.git"
+  },
+  "author": "@ofraski and @forbesmyester",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/forbesmyester/febase/issues"
+  },
+  "homepage": "https://github.com/forbesmyester/febase",
+  "dependencies": {
+    "react": "^0.13.3",
+    "react-router": "^0.13.3",
+    "reflux": "^0.2.7"
+  },
+  "devDependencies": {
+  }
+}
