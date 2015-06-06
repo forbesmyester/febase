@@ -1,0 +1,51 @@
+<html>
+<head>
+  <title>react.inc</title>
+</head>
+<body>
+  <div id="bobCounter"></div>
+  <div id="bobButton"></div>
+</body>
+<!-- The core React library -->
+<script src="https://fb.me/react-0.13.3.js"></script>
+<!-- In-browser JSX transformer, remove when pre-compiling JSX. -->
+<script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+<script src="./node_modules/reflux/dist/reflux.js"></script>
+<script type="text/jsx">
+
+    var Actions = Reflux.createActions(["increment"]);
+
+    var incStore = Reflux.createStore({
+      listenables: [Actions],
+      getInitialState: function() {
+        return this.val = 0;
+      },
+      increment: function() {
+
+        this.val = this.val + 1;
+        this.trigger(this.val);
+      }
+  })
+
+  var DisplayBob = React.createClass({
+    mixins: [Reflux.connect(incStore, "incrementing")],
+    render: function() {
+      return (<span>{this.state.incrementing}</span>);
+    }
+  });
+
+  var ButtonBob = React.createClass({
+    render: function() {
+      return (<button onClick={function() { Actions.increment()} }>Bob</button>);
+    }
+  })
+
+  React.render(
+  <h1><DisplayBob /></h1>,
+  document.getElementById('bobCounter')
+  );
+
+  React.render(<ButtonBob/>, document.getElementById('bobButton'));
+
+</script>
+</html>
