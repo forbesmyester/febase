@@ -25,13 +25,6 @@ var ButtonBob = React.createClass({
 	}
 })
 
-// React.render(
-//     <h1><DisplayBob /></h1>,
-//     document.getElementById('bobCounter')
-// );
-
-// React.render(<ButtonBob/>, document.getElementById('bobButton'));
-
 var Template = React.createClass({
     render: function() {
         return (<div><h1>Template</h1><ReactRouter.RouteHandler /></div>);
@@ -61,10 +54,10 @@ var NotFound = React.createClass({
 });
 
 var routes = (
-    <ReactRouter.Route handler={Template} path="/">
+    <ReactRouter.Route handler={Template} path="#/">
         <ReactRouter.DefaultRoute handler={Home} />
-        <ReactRouter.Route path="/" name="home" handler={Home} />
-        <ReactRouter.Route path="/counter" name="counter" handler={Counter} />
+        <ReactRouter.Route path="#/" name="home" handler={Home} />
+        <ReactRouter.Route path="#/counter" name="counter" handler={Counter} />
         <ReactRouter.NotFoundRoute handler={NotFound} />
     </ReactRouter.Route>
 );
