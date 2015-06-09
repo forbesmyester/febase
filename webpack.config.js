@@ -29,10 +29,10 @@ module.exports = {
     devServer: {
         host: process.env.USER_IP || 'localhost',
         port: 8090,
-        publicPath: '/',        // Where webpack exposes bundles
+        publicPath: '/js/jsx/',        // Where webpack exposes bundles
                                 //  on its own in-memory file system 
         hot: true,              // Switch on Hot Module Replacement
-        indexEntry: 'index',    // Entry to add HNR code to (EntryChunk or CommonsChunk)
+        indexEntry: 'index.jsx',    // Entry to add HNR code to (EntryChunk or CommonsChunk)
         secure: true,           // use https or http
         stats: {
             colors: true,

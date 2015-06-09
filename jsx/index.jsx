@@ -33,7 +33,7 @@ var Template = React.createClass({
 
 var Home = React.createClass({
     render: function() {
-        return (<ReactRouter.Link to="/counter">Go to it!</ReactRouter.Link>);
+        return (<ReactRouter.Link to="/counter">Go click it now!</ReactRouter.Link>);
     }
 });
 
@@ -54,15 +54,15 @@ var NotFound = React.createClass({
 });
 
 var routes = (
-    <ReactRouter.Route handler={Template} path="#/">
+    <ReactRouter.Route handler={Template} path="/">
         <ReactRouter.DefaultRoute handler={Home} />
-        <ReactRouter.Route path="#/" name="home" handler={Home} />
-        <ReactRouter.Route path="#/counter" name="counter" handler={Counter} />
+        <ReactRouter.Route path="/" name="home" handler={Home} />
+        <ReactRouter.Route path="/counter" name="counter" handler={Counter} />
         <ReactRouter.NotFoundRoute handler={NotFound} />
     </ReactRouter.Route>
 );
 
 ReactRouter.run(routes, ReactRouter.HistoryLocation, function(Handler) {
-    React.render(<Handler/>, document.body);
+    React.render(<Handler/>, document.getElementById('root'));
 });
 
