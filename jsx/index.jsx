@@ -1,27 +1,56 @@
-var Actions = Reflux.createActions(["increment"]);
+var Actions = Reflux.createActions({
+    increment: { children: ["incrementCompleted", "incrementFailed"] }
+});
 
 var incStore = Reflux.createStore({
 	listenables: [Actions],
 	getInitialState: function() {
-		return this.val = 0;
+        this.val = 0
+		return this._represent(this.val);
 	},
+    _represent: function(val, loading, error) {
+        return {
+            value: val,
+            loading: (loading ? true : false),
+            error: (error ? true : false)
+        };
+    },
+    incrementCompleted: function (v) { this.trigger(this._represent(v)); },
+    incrementFailed: function(e) { this.trigger(this._represent(-1, false, true)); },
 	increment: function() {
 
-		this.val = this.val + 1;
-		this.trigger(this.val);
+        this.trigger(this._represent(this.val, true));
+        setTimeout(function() {
+            this.val = this.val + 1;
+            if (this.val == 5) {
+                return this.incrementFailed(this.val);
+            }
+            this.incrementCompleted(this.val);
+        }.bind(this), 1000);
+
 	}
 })
 
 var DisplayBob = React.createClass({
 	mixins: [Reflux.connect(incStore, "incrementing")],
 	render: function() {
-		return (<span>{this.state.incrementing}</span>);
+        var els = [<span>{this.state.incrementing.value}</span>];
+        if (this.state.incrementing.error) {
+            els.unshift(<span>Error</span>);
+        }
+
+		return (<div>{els}</div>);
 	}
 });
 
 var ButtonBob = React.createClass({
+	mixins: [Reflux.connect(incStore, "incrementing")],
 	render: function() {
-		return (<button onClick={function() { Actions.increment()} }>Bob</button>);
+        var txt = 'Bob';
+        if (this.state.incrementing.loading) {
+            txt = '* ' + txt;
+        }
+		return (<button onClick={function() { Actions.increment()} }>{ txt }</button>);
 	}
 })
 
