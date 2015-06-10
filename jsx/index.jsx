@@ -1,3 +1,6 @@
+var React = require('react');
+var Reflux = require('reflux');
+var ReactRouter = require('react-router');
 var Actions = Reflux.createActions({
     increment: { children: ["incrementCompleted", "incrementFailed"] }
 });
