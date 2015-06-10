@@ -1,16 +1,41 @@
+var StylesheetFactory = require('react-style');
 var React = require('react');
 var Reflux = require('reflux');
 var ReactRouter = require('react-router');
+
+var stylesheet = StylesheetFactory.create({
+    header: { 'background-color': 'grey' },
+    field: {
+        set: {
+            width: '500px',
+            margin: 'auto'
+        },
+        label: {
+            display: 'inline-block',
+            width: '100px'
+        },
+        onlyvalue: {
+            display: 'inline-block',
+            'margin-left': '100px',
+            width: ' calc(100% - 100px)'
+        },
+        value: {
+            display: 'inline-block',
+            width: 'calc(100% - 100px)'
+        }
+    }
+});
+
 var Actions = Reflux.createActions({
     increment: { children: ["incrementCompleted", "incrementFailed"] }
 });
 
 var incStore = Reflux.createStore({
-	listenables: [Actions],
-	getInitialState: function() {
-        this.val = 0
-		return this._represent(this.val);
-	},
+    listenables: [Actions],
+    getInitialState: function() {
+        this.val = 0;
+        return this._represent(this.val);
+    },
     _represent: function(val, loading, error) {
         return {
             value: val,
@@ -20,7 +45,7 @@ var incStore = Reflux.createStore({
     },
     incrementCompleted: function (v) { this.trigger(this._represent(v)); },
     incrementFailed: function(e) { this.trigger(this._represent(-1, false, true)); },
-	increment: function() {
+    increment: function() {
 
         this.trigger(this._represent(this.val, true));
         setTimeout(function() {
@@ -31,35 +56,47 @@ var incStore = Reflux.createStore({
             this.incrementCompleted(this.val);
         }.bind(this), 1000);
 
-	}
+    }
 })
 
 var DisplayBob = React.createClass({
-	mixins: [Reflux.connect(incStore, "incrementing")],
-	render: function() {
+    mixins: [Reflux.connect(incStore, "incrementing")],
+    render: function() {
         var els = [<span>{this.state.incrementing.value}</span>];
         if (this.state.incrementing.error) {
             els.unshift(<span>Error</span>);
         }
 
-		return (<div>{els}</div>);
-	}
+        return (<div styles={[stylesheet.field.set]}><div styles={[stylesheet.field.onlyvalue]}>{els}</div></div>);
+    }
 });
 
 var ButtonBob = React.createClass({
-	mixins: [Reflux.connect(incStore, "incrementing")],
-	render: function() {
+    mixins: [Reflux.connect(incStore, "incrementing")],
+    render: function() {
         var txt = 'Bob';
         if (this.state.incrementing.loading) {
             txt = '* ' + txt;
         }
-		return (<button onClick={function() { Actions.increment()} }>{ txt }</button>);
-	}
-})
+        return (
+            <div styles={[stylesheet.field.set]}>
+                <span styles={[stylesheet.field.label]}>ClickInput: </span>
+                <span styles={[stylesheet.field.value]}>
+                    <button onClick={function() { Actions.increment()} }>{ txt }</button>
+                </span>
+            </div>
+        );
+    }
+});
 
 var Template = React.createClass({
     render: function() {
-        return (<div><h1>Template</h1><ReactRouter.RouteHandler /></div>);
+        return (
+            <div>
+                <h1 styles={[stylesheet.header]}>Template</h1>
+                <ReactRouter.RouteHandler />
+            </div>
+        );
     }
 });
 
