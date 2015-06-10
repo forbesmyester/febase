@@ -5,24 +5,22 @@ var ReactRouter = require('react-router');
 
 var stylesheet = StylesheetFactory.create({
     header: { 'background-color': 'grey' },
-    field: {
-        set: {
-            width: '500px',
-            margin: 'auto'
-        },
-        label: {
-            display: 'inline-block',
-            width: '100px'
-        },
-        onlyvalue: {
-            display: 'inline-block',
-            'margin-left': '100px',
-            width: ' calc(100% - 100px)'
-        },
-        value: {
-            display: 'inline-block',
-            width: 'calc(100% - 100px)'
-        }
+    field_set: {
+        width: '500px',
+        margin: 'auto'
+    },
+    field_label: {
+        display: 'inline-block',
+        width: '100px'
+    },
+    field_onlyvalue: {
+        display: 'inline-block',
+        'margin-left': '100px',
+        width: ' calc(100% - 100px)'
+    },
+    field_value: {
+        display: 'inline-block',
+        width: 'calc(100% - 100px)'
     }
 });
 
@@ -67,7 +65,7 @@ var DisplayBob = React.createClass({
             els.unshift(<span>Error</span>);
         }
 
-        return (<div styles={[stylesheet.field.set]}><div styles={[stylesheet.field.onlyvalue]}>{els}</div></div>);
+        return (<div styles={[stylesheet.field_set]}><div styles={[stylesheet.field_onlyvalue]}>{els}</div></div>);
     }
 });
 
@@ -79,9 +77,9 @@ var ButtonBob = React.createClass({
             txt = '* ' + txt;
         }
         return (
-            <div styles={[stylesheet.field.set]}>
-                <span styles={[stylesheet.field.label]}>ClickInput: </span>
-                <span styles={[stylesheet.field.value]}>
+            <div styles={[stylesheet.field_set]}>
+                <span styles={[stylesheet.field_label]}>ClickInput: </span>
+                <span styles={[stylesheet.field_value]}>
                     <button onClick={function() { Actions.increment()} }>{ txt }</button>
                 </span>
             </div>
