@@ -4,7 +4,9 @@ var Reflux = require('reflux');
 var ReactRouter = require('react-router');
 
 var stylesheet = StylesheetFactory.create({
-    header: { 'background-color': 'grey' },
+    header: {
+        backgroundColor: 'grey'
+    },
     field_set: {
         width: '500px',
         margin: 'auto'
