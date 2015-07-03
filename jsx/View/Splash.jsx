@@ -28,7 +28,6 @@ var SplashView = {
     },
 
     onChange: function(state) {
-        console.log(state);
         this.setState(state);
     },
 
@@ -42,7 +41,6 @@ var SplashView = {
     },
 
     render: function() {
-        console.log("R", this.state, arguments);
         if (this.state.loading) {
             return ( <LinearProgress mode="indeterminate" /> );
         }

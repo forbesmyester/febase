@@ -13,16 +13,12 @@ class SplashStore {
     }
 
     initialLoad(aboutMe) {
-        console.log("Splashload");
         this.userId = 111;
             this.emitChange();
-            console.log("emit");
         setTimeout(function() {
-            console.log("A");
             this.userId = 10;
             this.loading = false;
             this.emitChange();
-            console.log("emit");
         }.bind(this),1000);
 
     }

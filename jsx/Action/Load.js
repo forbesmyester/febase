@@ -1,5 +1,4 @@
 var alt = require('../alt');
-console.log(alt);
 
 class LoadActions {
     initialLoad(data) {

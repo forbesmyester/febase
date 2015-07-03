@@ -24,7 +24,6 @@ var HomeView = React.createClass({
     },
 
     render() {
-        console.log("V: ", this.state);
         if (this.state.loading) { return (<div>LOADING</div>) }
         if (this.state.error) { return (<div>ERROR</div>) }
         return (

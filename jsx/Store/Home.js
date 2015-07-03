@@ -22,13 +22,10 @@ class HomeStore {
     }
 
     initialLoad(userId) {
-        console.log("i1", userId);
         setTimeout(function() {
-        console.log("i2");
             this.me = { userId: userId, firstname: "Bob", lastname: "Smith" };
             this.loading = false;
             this.emitChange();
-        console.log("i3");
         }.bind(this), 1000);
 
     }
