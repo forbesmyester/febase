@@ -4,7 +4,7 @@ var express = require('express'),
     app = express(),
     webpackDevMiddlware = require('webpack-dev-middleware'),
     webpack = require('webpack'),
-    R = require('ramda'),
+    R = require('require-parts')('ramda', 'src', ['forEach']),
     errorhandler = require('errorhandler'),
     fs = require('fs');
 
@@ -45,7 +45,5 @@ var server = app.listen(3000, function () {
 
   console.log('Example app listening at http://%s:%s', host, port);
 
-
-
-
 });
+

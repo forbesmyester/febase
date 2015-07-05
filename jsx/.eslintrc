@@ -10,6 +10,7 @@
         "arrowFunctions": true,
         "blockBindings": true,
         "destructuring": true,
+        "objectLiteralShorthandMethods": true,
         "restParams": true,
         "classes": true,
         "jsx": true
@@ -22,7 +23,7 @@
         "no-mixed-requires": 0,
         "eqeqeq": 0,
 
-        "react/display-name": 1,
+        "react/display-name": 0,
         "react/jsx-boolean-value": 1,
         "react/jsx-no-undef": 1,
         "react/jsx-quotes": 1,

@@ -1,17 +1,22 @@
-var React = require('react');
-var HomeStore = require('../Store/Home.js');
-var HomeAction = require('../Action/Load.js');
-var assert = require('assert');
+"use strict";
+var React = require('react'),
+    HomeStore = require('../Store/Home.js'),
+    HomeAction = require('../Action/Load.js');
 
 var HomeView = React.createClass({
+
+    propTypes: {
+        params: React.PropTypes.shape({
+            userId: React.PropTypes.string.isRequired
+        })
+    },
+
     getInitialState() {
         return HomeStore.getState();
     },
 
     componentDidMount() {
         HomeStore.listen(this.onChange);
-        assert(this.props.params.hasOwnProperty('userId'));
-        assert(this.props.hasOwnProperty('params'))
         return HomeAction.initialLoad(this.props.params.userId);
     },
 
@@ -24,8 +29,8 @@ var HomeView = React.createClass({
     },
 
     render() {
-        if (this.state.loading) { return (<div>LOADING</div>) }
-        if (this.state.error) { return (<div>ERROR</div>) }
+        if (this.state.loading) { return (<div>LOADING</div>); }
+        if (this.state.error) { return (<div>ERROR</div>); }
         return (
             <ul>
                 { JSON.stringify(this.state) }

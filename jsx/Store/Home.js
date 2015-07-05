@@ -1,8 +1,8 @@
 "use strict";
 
 var alt = require('../alt');
-var LoadAction = require('../Action/Load.js');
-var R = require('ramda');
+var LoadAction = require('../Action/Load.js'),
+    R = require('require-parts')('ramda', 'src', ['forEach', 'toPairs']);
 
 class HomeStore {
 
