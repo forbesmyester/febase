@@ -35,6 +35,7 @@
     "react-style": "^0.5.5",
     "react-tap-event-plugin": "^0.1.7",
     "require-parts": "^0.9.9",
+    "require-parts-babel": "^0.9.9",
     "webpack": "^1.9.10",
     "webpack-dev-middleware": "^1.1.0",
     "webpack-dev-server": "^1.9.0"

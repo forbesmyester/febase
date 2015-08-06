@@ -5,7 +5,10 @@ var React = require('react');
 var ReactRouter = require('react-router');
 
 var HomeView = require('./View/Home.jsx'),
-    SplashView = require('./View/Splash.jsx');
+    SplashView = require('./View/Splash.jsx'),
+    AltLeftNav = require('./View/AltLeftNav.jsx');
+
+var alt = require('./alt.js');
 
 // TODO: Remove when can.
 var injectTapEventPlugin = require("react-tap-event-plugin");
@@ -40,7 +43,9 @@ var mui = require('material-ui'),
 //     }
 // });
 
-var menuItems = [
+var altLeftNavActions = alt.getActions('AltLeftNav');
+
+altLeftNavActions.setMenuItems([
     { route: 'get-started', text: 'Get Started' },
     { route: 'customization', text: 'Customization' },
     { route: 'components', text: 'Components' },
@@ -60,7 +65,7 @@ var menuItems = [
         text: 'Disabled Link',
         disabled: true
     }
-];
+]);
 
 var Template = React.createClass({
 
@@ -76,13 +81,13 @@ var Template = React.createClass({
 
     showLeftNav: function(event) {
         event.preventDefault();
-        this.refs.leftNav.open();
+        altLeftNavActions.setOpen(true);
     },
 
     render: function() {
         var r = (
             <div>
-                <LeftNav ref="leftNav" docked={ false } menuItems={ menuItems } />
+                <AltLeftNav />
                 <AppBar title='An app with users' onLeftIconButtonTouchTap={ this.showLeftNav }/>
                 <ReactRouter.RouteHandler />
             </div>
